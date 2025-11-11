@@ -1,0 +1,212 @@
+/*
+ * Navigation Component
+ */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-fixed;
+  background: rgba(var(--color-bg-secondary-rgb, 5, 5, 8), 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+  transition: all $transition-base;
+
+  &.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border-bottom-color: var(--color-neon-pink);
+  }
+
+  &__container {
+    @extend .container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
+  }
+
+  &__logo {
+    font-family: $font-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-black;
+    @include gradient-text($color-neon-pink, $color-neon-purple);
+    transition: all $transition-base;
+
+    &:hover {
+      @include neon-glow($color-neon-pink);
+      transform: scale(1.05);
+    }
+  }
+
+  &__menu {
+    display: none;
+    align-items: center;
+    gap: $spacing-xl;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include respond-to('md') {
+      display: flex;
+    }
+  }
+
+  &__link {
+    position: relative;
+    color: var(--color-text-secondary);
+    font-weight: $font-weight-medium;
+    font-size: $font-size-base;
+    padding: $spacing-sm $spacing-md;
+    transition: all $transition-fast;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, $color-neon-pink, $color-neon-purple);
+      transform: translateX(-50%);
+      transition: width $transition-base;
+    }
+
+    &:hover {
+      color: var(--color-text-primary);
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &.active {
+      color: var(--color-neon-pink);
+      @include neon-glow($color-neon-pink, 0.5);
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__cart {
+    position: relative;
+    @include button-reset;
+    padding: $spacing-sm;
+    color: var(--color-text-primary);
+    font-size: $font-size-xl;
+    transition: all $transition-fast;
+
+    &:hover {
+      color: var(--color-neon-pink);
+      @include neon-glow($color-neon-pink, 0.6);
+      transform: scale(1.1);
+    }
+
+    &-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      background: $color-neon-pink;
+      color: var(--color-text-primary);
+      font-size: $font-size-xs;
+      font-weight: $font-weight-bold;
+      border-radius: $radius-full;
+      @include flex-center;
+      @include box-glow($color-neon-pink);
+    }
+  }
+
+  &__toggle {
+    @include button-reset;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: $spacing-sm;
+    cursor: pointer;
+
+    @include respond-to('md') {
+      display: none;
+    }
+
+    span {
+      display: block;
+      width: 25px;
+      height: 2px;
+      background: var(--color-text-primary);
+      transition: all $transition-base;
+    }
+
+    &.active {
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(7px, 7px);
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+      }
+    }
+  }
+
+  // Mobile menu
+  &__mobile {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(var(--color-bg-primary-rgb, 10, 10, 15), 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+    padding: $spacing-lg;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all $transition-base;
+
+    &.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: $spacing-md;
+    }
+
+    a {
+      display: block;
+      padding: $spacing-md;
+      color: var(--color-text-secondary);
+      font-weight: $font-weight-medium;
+      border-radius: $radius-md;
+      transition: all $transition-fast;
+
+      &:hover, &.active {
+        color: var(--color-neon-pink);
+        background: rgba($color-neon-pink, 0.1);
+        @include box-glow($color-neon-pink, 0.3);
+      }
+    }
+  }
+}

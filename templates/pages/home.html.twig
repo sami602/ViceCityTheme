@@ -1,0 +1,194 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vice City E-Shop - The Ultimate Gaming Marketplace{% endblock %}
+
+{% block body %}
+
+{# Hero Section #}
+<section class="hero">
+    <div class="hero__background">
+        <div class="u-gradient-overlay"></div>
+    </div>
+    <div class="hero__content">
+        <span class="hero__badge">🎮 Welcome to the Future</span>
+        <h1 class="hero__title">
+            <span>Vice City</span>
+            Gaming Marketplace
+        </h1>
+        <p class="hero__subtitle">
+            Experience the ultimate gaming destination with our cyberpunk-themed e-shop.
+            Discover thousands of games at unbeatable prices.
+        </p>
+        <div class="hero__actions">
+            <a href="{{ path('products') }}" class="btn btn--primary btn--lg">
+                Browse Games
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+            </a>
+            <a href="#featured" class="btn btn--secondary btn--lg">
+                View Deals
+            </a>
+        </div>
+        <div class="hero__stats">
+            <div class="hero__stats-item">
+                <span class="hero__stats-value" data-counter="10000">0</span>
+                <span class="hero__stats-label">Games Available</span>
+            </div>
+            <div class="hero__stats-item">
+                <span class="hero__stats-value" data-counter="50000">0</span>
+                <span class="hero__stats-label">Happy Gamers</span>
+            </div>
+            <div class="hero__stats-item">
+                <span class="hero__stats-value">24/7</span>
+                <span class="hero__stats-label">Support</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# Categories Section #}
+<section class="section">
+    <div class="container">
+        <div class="featured-section__header text-center mb-4xl">
+            <span class="featured-section__badge">Categories</span>
+            <h2 class="featured-section__title">Browse by Genre</h2>
+            <p class="featured-section__subtitle">
+                Find your next favorite game across our wide selection of categories
+            </p>
+        </div>
+
+        <div class="categories">
+            {% for category in categories %}
+            <div class="categories__item">
+                <img src="{{ category.image }}" alt="{{ category.name }}" loading="lazy">
+                <div class="categories__content">
+                    <h3 class="categories__name">{{ category.name }}</h3>
+                    <p class="categories__count">{{ category.count }} Games</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{# Featured Games #}
+<section id="featured" class="section">
+    <div class="container">
+        <div class="featured-section__header">
+            <span class="featured-section__badge">🔥 Hot Deals</span>
+            <h2 class="featured-section__title">Featured Games</h2>
+            <p class="featured-section__subtitle">
+                Check out our handpicked selection of the hottest games right now
+            </p>
+        </div>
+
+        <div class="product-grid stagger-container">
+            {% for game in featured_games %}
+            <div class="card stagger-item" data-product='{{ game|json_encode }}'>
+                <div class="card__image">
+                    <img src="{{ game.image }}" alt="{{ game.title }}" loading="lazy">
+                    {% if game.badge is defined %}
+                    <span class="card__badge card__badge--{{ game.badge|lower }}">{{ game.badge }}</span>
+                    {% endif %}
+                </div>
+                <div class="card__content">
+                    <h3 class="card__title">{{ game.title }}</h3>
+                    <p class="card__description">{{ game.description }}</p>
+                    <div class="card__meta">
+                        <div class="card__price">
+                            {% if game.oldPrice is defined %}
+                            <span class="card__price-old">${{ game.oldPrice }}</span>
+                            {% endif %}
+                            ${{ game.price }}
+                        </div>
+                        <div class="card__rating">
+                            {% for i in 1..5 %}
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                            </svg>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card__footer">
+                        <button class="btn btn--primary btn--full"
+                                data-add-to-cart='{{ game|json_encode }}'>
+                            Add to Cart
+                        </button>
+                        <a href="{{ path('product_detail', {slug: game.slug}) }}" class="btn btn--outline">
+                            Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-3xl">
+            <a href="{{ path('products') }}" class="btn btn--secondary btn--lg">
+                View All Games
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+{# Newsletter Section #}
+<section class="section section-sm">
+    <div class="container">
+        <div class="newsletter-banner">
+            <div class="newsletter-banner__content">
+                <div class="newsletter-banner__icon">📬</div>
+                <h2 class="newsletter-banner__title">Stay in the Loop</h2>
+                <p class="newsletter-banner__text">
+                    Subscribe to our newsletter and never miss a deal, update, or gaming news!
+                </p>
+                <form class="newsletter-banner__form" x-data="{ email: '' }" @submit.prevent="alert('Thanks for subscribing!')">
+                    <input type="email" x-model="email" class="form-input" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn--primary">Subscribe Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# Testimonials #}
+<section class="testimonials">
+    <div class="container">
+        <div class="featured-section__header">
+            <span class="featured-section__badge">⭐ Reviews</span>
+            <h2 class="featured-section__title">What Gamers Say</h2>
+            <p class="featured-section__subtitle">
+                Don't just take our word for it - hear from our community
+            </p>
+        </div>
+
+        <div class="product-grid">
+            {% for testimonial in testimonials %}
+            <div class="testimonials__item">
+                <div class="testimonials__stars">
+                    {% for i in 1..testimonial.rating %}
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    {% endfor %}
+                </div>
+                <p class="testimonials__text">"{{ testimonial.text }}"</p>
+                <div class="testimonials__author">
+                    <div class="testimonials__author-avatar">
+                        <img src="{{ testimonial.avatar }}" alt="{{ testimonial.author }}" loading="lazy">
+                    </div>
+                    <div class="testimonials__author-info">
+                        <div class="testimonials__author-name">{{ testimonial.author }}</div>
+                        <div class="testimonials__author-role">{{ testimonial.role }}</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

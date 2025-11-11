@@ -1,0 +1,64 @@
+<nav class="navbar" x-data="{ mobileMenuOpen: false, cartOpen: false }">
+    <div class="navbar__container">
+        <a href="{{ path('home') }}" class="navbar__logo">
+            Vice City
+        </a>
+
+        <ul class="navbar__menu">
+            <li><a href="{{ path('home') }}" class="navbar__link {{ app.request.get('_route') == 'home' ? 'active' : '' }}">Home</a></li>
+            <li><a href="{{ path('products') }}" class="navbar__link {{ app.request.get('_route') == 'products' ? 'active' : '' }}">Games</a></li>
+            <li><a href="#" class="navbar__link">Deals</a></li>
+            <li><a href="#" class="navbar__link">Support</a></li>
+        </ul>
+
+        <div class="navbar__actions">
+            <button class="icon-btn" data-theme-toggle title="Toggle theme">
+                <span data-theme-icon class="icon-btn__icon">🌙</span>
+            </button>
+            <button class="navbar__cart" data-cart-toggle @click="cartOpen = !cartOpen">
+                🛒
+                <span class="navbar__cart-badge d-none">0</span>
+            </button>
+            <a href="{{ path('account') }}" class="icon-btn">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                </svg>
+            </a>
+            <button class="navbar__toggle" @click="mobileMenuOpen = !mobileMenuOpen" :class="{ 'active': mobileMenuOpen }">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="navbar__mobile" :class="{ 'active': mobileMenuOpen }">
+        <ul>
+            <li><a href="{{ path('home') }}" class="{{ app.request.get('_route') == 'home' ? 'active' : '' }}">Home</a></li>
+            <li><a href="{{ path('products') }}" class="{{ app.request.get('_route') == 'products' ? 'active' : '' }}">Games</a></li>
+            <li><a href="#">Deals</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="{{ path('account') }}">My Account</a></li>
+        </ul>
+    </div>
+
+    <div class="mini-cart" :class="{ 'active': cartOpen }">
+        <div class="mini-cart__header">
+            <h3 class="mini-cart__title">Shopping Cart</h3>
+            <button class="icon-btn" @click="cartOpen = false">✕</button>
+        </div>
+        <div class="mini-cart__items" data-mini-cart-items>
+            <p class="text-center text-muted">Your cart is empty</p>
+        </div>
+        <div class="mini-cart__footer">
+            <div class="mini-cart__total">
+                <span>Total:</span>
+                <span data-cart-total>$0.00</span>
+            </div>
+            <div class="mini-cart__actions">
+                <a href="{{ path('cart') }}" class="btn btn--outline btn--full">View Cart</a>
+                <a href="{{ path('checkout') }}" class="btn btn--primary btn--full">Checkout</a>
+            </div>
+        </div>
+    </div>
+</nav>

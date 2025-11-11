@@ -1,0 +1,217 @@
+/*
+ * Button Components
+ */
+
+.btn {
+  @include button-reset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-xl;
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  text-align: center;
+  border-radius: $radius-lg;
+  cursor: pointer;
+  transition: all $transition-base;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform $transition-slow;
+  }
+
+  &:hover::before {
+    transform: translateX(100%);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // Primary button
+  &--primary {
+    background: linear-gradient(135deg, $color-neon-pink, $color-neon-purple);
+    color: var(--color-text-primary);
+    @include box-glow($color-neon-pink, 0.6);
+
+    &:hover {
+      background: linear-gradient(135deg, $color-neon-purple, $color-neon-pink);
+      @include box-glow($color-neon-pink, 1);
+      transform: translateY(-2px);
+    }
+  }
+
+  // Light mode override: ensure primary text is white on hover
+  [data-theme="light"] &--primary:hover {
+    color: var(--color-white);
+  }
+
+  // Dark mode override: ensure primary text is black on hover
+  [data-theme="dark"] &--primary:hover {
+    color: #000000;
+  }
+
+  // Secondary button
+  &--secondary {
+    background: transparent;
+    border-color: var(--color-neon-blue);
+    color: var(--color-neon-blue);
+
+    &:hover {
+      background: rgba($color-neon-blue, 0.1);
+      @include box-glow($color-neon-blue, 0.8);
+      transform: translateY(-2px);
+    }
+  }
+
+  // Outline button
+  &--outline {
+    background: transparent;
+    border-color: var(--color-border);
+    color: var(--color-text-primary);
+
+    &:hover {
+      border-color: var(--color-neon-pink);
+      color: var(--color-neon-pink);
+      @include box-glow($color-neon-pink, 0.5);
+    }
+  }
+
+  // Ghost button
+  &--ghost {
+    background: transparent;
+    color: var(--color-text-secondary);
+
+    &:hover {
+      background: rgba($color-neon-pink, 0.1);
+      color: var(--color-neon-pink);
+    }
+  }
+
+  // Success button
+  &--success {
+    background: linear-gradient(135deg, $color-success, darken($color-success, 10%));
+    color: $color-bg-darker;
+    @include box-glow($color-success, 0.6);
+
+    &:hover {
+      @include box-glow($color-success, 1);
+      transform: translateY(-2px);
+    }
+  }
+
+  // Danger button
+  &--danger {
+    background: linear-gradient(135deg, $color-error, darken($color-error, 10%));
+    color: var(--color-text-primary);
+    @include box-glow($color-error, 0.6);
+
+    &:hover {
+      @include box-glow($color-error, 1);
+      transform: translateY(-2px);
+    }
+  }
+
+  // Icon button
+  &--icon {
+    padding: $spacing-md;
+    aspect-ratio: 1;
+    border-radius: $radius-full;
+  }
+
+  // Sizes
+  &--sm {
+    padding: $spacing-sm $spacing-lg;
+    font-size: $font-size-sm;
+  }
+
+  &--lg {
+    padding: $spacing-lg $spacing-2xl;
+    font-size: $font-size-lg;
+  }
+
+  &--xl {
+    padding: $spacing-xl $spacing-3xl;
+    font-size: $font-size-xl;
+  }
+
+  // Full width
+  &--full {
+    width: 100%;
+  }
+
+  // Loading state
+  &--loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 50%;
+      left: 50%;
+      margin-left: -10px;
+      margin-top: -10px;
+      border: 2px solid transparent;
+      border-top-color: currentColor;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+  }
+}
+
+// Button group
+.btn-group {
+  display: inline-flex;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+
+  &--vertical {
+    flex-direction: column;
+  }
+}
+
+// Icon buttons
+.icon-btn {
+  @include button-reset;
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-full;
+  color: var(--color-text-secondary);
+  transition: all $transition-fast;
+
+  &__icon {
+    font-size: 20px;
+  }
+
+  &:hover {
+    color: var(--color-neon-pink);
+    background: rgba($color-neon-pink, 0.1);
+    @include box-glow($color-neon-pink, 0.5);
+  }
+}
+
+// Animations
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

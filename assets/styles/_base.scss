@@ -1,0 +1,239 @@
+/*
+ * Base Styles & Typography
+ */
+
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Orbitron:wght@400;700;900&display=swap');
+
+// CSS Reset & Base
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(185, 103, 255, var(--overlay-opacity)) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 0, 110, var(--overlay-opacity)) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(0, 217, 255, var(--overlay-opacity)) 0%, transparent 50%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: var(--transition-theme);
+}
+
+// Typography
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  margin-bottom: $spacing-md;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: $font-size-5xl;
+  font-weight: $font-weight-black;
+  @include gradient-text($color-neon-pink, $color-neon-purple);
+
+  @include respond-to('md') {
+    font-size: $font-size-6xl;
+  }
+}
+
+h2 {
+  font-size: $font-size-4xl;
+
+  @include respond-to('md') {
+    font-size: $font-size-5xl;
+  }
+}
+
+h3 {
+  font-size: $font-size-3xl;
+
+  @include respond-to('md') {
+    font-size: $font-size-4xl;
+  }
+}
+
+h4 {
+  font-size: $font-size-2xl;
+
+  @include respond-to('md') {
+    font-size: $font-size-3xl;
+  }
+}
+
+h5 {
+  font-size: $font-size-xl;
+
+  @include respond-to('md') {
+    font-size: $font-size-2xl;
+  }
+}
+
+h6 {
+  font-size: $font-size-lg;
+
+  @include respond-to('md') {
+    font-size: $font-size-xl;
+  }
+}
+
+p {
+  margin-bottom: $spacing-md;
+  color: var(--color-text-secondary);
+}
+
+a {
+  color: var(--color-neon-blue);
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: var(--color-neon-pink);
+    @include neon-glow(var(--color-neon-pink), 0.6);
+  }
+}
+
+strong, b {
+  font-weight: $font-weight-bold;
+}
+
+em, i {
+  font-style: italic;
+}
+
+code {
+  font-family: $font-mono;
+  font-size: 0.9em;
+  padding: 0.2em 0.4em;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: $radius-sm;
+  border: 1px solid var(--color-border);
+}
+
+// Lists
+ul, ol {
+  margin-bottom: $spacing-md;
+  padding-left: $spacing-xl;
+}
+
+li {
+  margin-bottom: $spacing-sm;
+  color: var(--color-text-secondary);
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Container
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+// Section spacing
+.section {
+  padding-top: $spacing-2xl;
+
+  @include respond-to('lg') {
+    padding-top: $spacing-3xl;
+  }
+}
+
+.section-sm {
+  padding-top: $spacing-xl;
+}
+
+.section-lg {
+  padding-top: $spacing-3xl;
+}
+
+// Utility classes
+.text-center {
+  text-align: center;
+}
+
+.text-gradient {
+  @include gradient-text($color-neon-pink, $color-neon-purple);
+}
+
+.neon-text {
+  color: var(--color-neon-pink);
+  @include neon-glow(var(--color-neon-pink));
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Selection
+::selection {
+  background: var(--color-neon-pink);
+  color: var(--color-text-primary);
+}
+
+::-moz-selection {
+  background: var(--color-neon-pink);
+  color: var(--color-text-primary);
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-card);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-neon-pink), var(--color-neon-purple));
+  border-radius: $radius-full;
+  border: 2px solid var(--color-bg-card);
+
+  &:hover {
+    background: linear-gradient(180deg, var(--color-neon-blue), var(--color-neon-pink));
+  }
+}
+
+// Focus styles
+:focus-visible {
+  outline: 2px solid var(--color-neon-blue);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  @include box-glow(var(--color-neon-blue), 0.8);
+}

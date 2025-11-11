@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shopping Cart - Vice City E-Shop{% endblock %}
+
+{% block body %}
+
+<div class="section">
+    <div class="container">
+        <h1 class="text-center mb-3xl mt-3xl">Shopping Cart</h1>
+
+        <div class="products-page__container">
+            <div class="products-page__main flex-1">
+                <div data-cart-items>
+                    {# Cart items will be dynamically inserted here by JavaScript #}
+                    <div class="cart-empty">
+                        <div class="cart-empty__icon">🛒</div>
+                        <h2 class="cart-empty__title">Your cart is empty</h2>
+                        <p class="cart-empty__text">Start adding some awesome games to your collection!</p>
+                        <a href="{{ path('products') }}" class="btn btn--primary">Browse Games</a>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="products-page__sidebar products-page__sidebar--wide">
+                <div class="cart-summary">
+                    <h2 class="cart-summary__title">Order Summary</h2>
+
+                    <div class="cart-summary__row">
+                        <span class="cart-summary__label">Subtotal</span>
+                        <span class="cart-summary__value" data-cart-subtotal>$0.00</span>
+                    </div>
+
+                    <div class="cart-summary__row">
+                        <span class="cart-summary__label">Shipping</span>
+                        <span class="cart-summary__value" data-cart-shipping>$0.00</span>
+                    </div>
+
+                    <div class="cart-summary__row">
+                        <span class="cart-summary__label">Tax</span>
+                        <span class="cart-summary__value" data-cart-tax>$0.00</span>
+                    </div>
+
+                    <div class="cart-summary__row cart-summary__discount" data-cart-discount-row style="display: none;">
+                        <span class="cart-summary__label">Discount (HIRE_SAMI)</span>
+                        <span class="cart-summary__value cart-summary__discount-value" data-cart-discount>-$0.00</span>
+                    </div>
+
+                    <div class="cart-summary__total">
+                        <span class="cart-summary__label">Total</span>
+                        <span class="cart-summary__value" data-cart-total>$0.00</span>
+                    </div>
+
+                    <div class="cart-summary__actions">
+                        <a href="{{ path('checkout') }}" class="btn btn--primary btn--full btn--lg">
+                            Proceed to Checkout
+                        </a>
+                        <a href="{{ path('products') }}" class="btn btn--outline btn--full">
+                            Continue Shopping
+                        </a>
+                    </div>
+
+                    <div class="cart-summary__promo">
+                        <label class="form-label">Promo Code</label>
+                        <input type="text" class="form-input" id="promo-code-input" placeholder="Enter code (try HIRE_SAMI 😉)">
+                        <button class="btn btn--secondary btn--full" id="apply-promo-btn">Apply</button>
+                        <div id="promo-message" class="mt-sm" style="display: none;"></div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

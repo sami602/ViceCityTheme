@@ -1,0 +1,115 @@
+/*
+ * GTA-6 Design System Variables
+ * Cyberpunk Vice City inspired color palette
+ */
+
+// Primary Colors - Neon Vice City Palette
+$color-neon-pink: #ff006e;
+$color-neon-blue: #00d9ff;
+$color-neon-purple: #b967ff;
+$color-neon-orange: #ff8c00;
+$color-neon-green: #00ff88;
+$color-neon-yellow: #ffed4e;
+
+// Background Colors
+$color-bg-dark: #0a0a0f;
+$color-bg-darker: #050508;
+$color-bg-card: #1a1a2e;
+$color-bg-card-hover: #252540;
+$color-bg-gradient-start: #0f0c29;
+$color-bg-gradient-mid: #302b63;
+$color-bg-gradient-end: #24243e;
+
+// Text Colors
+$color-text-primary: #ffffff;
+$color-text-secondary: #b8b8d0;
+$color-text-muted: #6b6b8a;
+$color-text-neon: $color-neon-pink;
+
+// UI Colors
+$color-success: $color-neon-green;
+$color-warning: $color-neon-orange;
+$color-error: $color-neon-pink;
+$color-info: $color-neon-blue;
+
+// Border & Dividers
+$color-border: rgba(255, 255, 255, 0.1);
+$color-border-glow: rgba(255, 0, 110, 0.5);
+
+// Typography
+$font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-heading: 'Orbitron', 'Rajdhani', sans-serif;
+$font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-lg: 1.125rem;   // 18px
+$font-size-xl: 1.25rem;    // 20px
+$font-size-2xl: 1.5rem;    // 24px
+$font-size-3xl: 2rem;      // 32px
+$font-size-4xl: 2.5rem;    // 40px
+$font-size-5xl: 3rem;      // 48px
+$font-size-6xl: 4rem;      // 64px
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+// Spacing
+$spacing-xs: 0.25rem;   // 4px
+$spacing-sm: 0.5rem;    // 8px
+$spacing-md: 1rem;      // 16px
+$spacing-lg: 1.5rem;    // 24px
+$spacing-xl: 2rem;      // 32px
+$spacing-2xl: 3rem;     // 48px
+$spacing-3xl: 4rem;     // 64px
+$spacing-4xl: 6rem;     // 96px
+$spacing-5xl: 8rem;     // 128px
+
+// Border Radius
+$radius-sm: 0.25rem;    // 4px
+$radius-md: 0.5rem;     // 8px
+$radius-lg: 0.75rem;    // 12px
+$radius-xl: 1rem;       // 16px
+$radius-2xl: 1.5rem;    // 24px
+$radius-full: 9999px;
+
+// Shadows
+$shadow-neon-pink: 0 0 20px rgba(255, 0, 110, 0.5);
+$shadow-neon-blue: 0 0 20px rgba(0, 217, 255, 0.5);
+$shadow-neon-purple: 0 0 20px rgba(185, 103, 255, 0.5);
+$shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+$shadow-card-hover: 0 12px 48px rgba(255, 0, 110, 0.3);
+
+// Transitions
+$transition-fast: 150ms ease-in-out;
+$transition-base: 250ms ease-in-out;
+$transition-slow: 400ms ease-in-out;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-2xl: 1700px;
+
+// Z-index
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+$z-notification: 9999;
+
+// Container
+$container-max-width: 1400px;
+$container-padding: $spacing-lg;
+
+// Grid
+$grid-columns: 12;
+$grid-gap: $spacing-lg;

@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Account - Vice City E-Shop{% endblock %}
+
+{% block body %}
+
+<div class="account">
+    <div class="container">
+        <div class="account__grid">
+            <aside class="account__sidebar">
+                <nav class="account__sidebar-nav">
+                    <li><a href="{{ path('account') }}" class="active">👤 Profile</a></li>
+                    <li><a href="{{ path('account_orders') }}">📦 Orders</a></li>
+                    <li><a href="{{ path('account_wishlist') }}">❤️ Wishlist</a></li>
+                    <li><a href="#">⚙️ Settings</a></li>
+                </nav>
+                <div class="account__sidebar-logout">
+                    <button>🚪 Logout</button>
+                </div>
+            </aside>
+
+            <div class="account__content">
+                <div class="account__content-header">
+                    <h1>My Profile</h1>
+                    <p>Manage your personal information</p>
+                </div>
+
+                <div class="profile__avatar">
+                    <div class="profile__avatar-image">
+                        <img src="https://i.pravatar.cc/150?img=68" alt="User">
+                        <button class="profile__avatar-upload">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                            </svg>
+                            <input type="file" class="u-visually-hidden">
+                        </button>
+                    </div>
+                    <div class="profile__avatar-info">
+                        <h2>John Gamer</h2>
+                        <p>john.gamer@example.com</p>
+                        <div class="profile__avatar-info-stats">
+                            <div class="profile__avatar-info-stats-item">
+                                <strong>23</strong>
+                                <span>Games Owned</span>
+                            </div>
+                            <div class="profile__avatar-info-stats-item">
+                                <strong>5</strong>
+                                <span>Wishlist</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="profile__form">
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-input" value="John">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-input" value="Gamer">
+                    </div>
+
+                    <div class="form-group form-group--full">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" value="john.gamer@example.com">
+                    </div>
+
+                    <div class="form-group form-group--full">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" class="form-input" value="+1 (555) 123-4567">
+                    </div>
+
+                    <div class="form-group form-group--full">
+                        <button type="submit" class="btn btn--primary">Save Changes</button>
+                        <button type="button" class="btn btn--outline">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

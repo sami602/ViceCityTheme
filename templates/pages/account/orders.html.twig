@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My Orders - Vice City E-Shop{% endblock %}
+
+{% block body %}
+
+<div class="account">
+    <div class="container">
+        <div class="account__grid">
+            <aside class="account__sidebar">
+                <nav class="account__sidebar-nav">
+                    <li><a href="{{ path('account') }}">👤 Profile</a></li>
+                    <li><a href="{{ path('account_orders') }}" class="active">📦 Orders</a></li>
+                    <li><a href="{{ path('account_wishlist') }}">❤️ Wishlist</a></li>
+                    <li><a href="#">⚙️ Settings</a></li>
+                </nav>
+                <div class="account__sidebar-logout">
+                    <button>🚪 Logout</button>
+                </div>
+            </aside>
+
+            <div class="account__content">
+                <div class="account__content-header">
+                    <h1>My Orders</h1>
+                    <p>Track and manage your orders</p>
+                </div>
+
+                <div class="orders__filters">
+                    <button class="active">All Orders</button>
+                    <button>Processing</button>
+                    <button>Shipped</button>
+                    <button>Delivered</button>
+                </div>
+
+                <div class="orders__list">
+                    {% for order in orders %}
+                    <div class="orders__item">
+                        <div class="orders__item-header">
+                            <div>
+                                <div class="orders__item-number">{{ order.id }}</div>
+                                <div class="orders__item-date">{{ order.date }}</div>
+                            </div>
+                            <span class="orders__item-status orders__item-status--{{ order.status }}">
+                                {{ order.status|upper }}
+                            </span>
+                        </div>
+
+                        <div class="orders__item-products">
+                            {% for item in order.items %}
+                            <div class="orders__item-product">
+                                <div class="orders__item-product-image">
+                                    <img src="{{ item.image }}" alt="{{ item.title }}">
+                                </div>
+                                <div class="orders__item-product-info">
+                                    <h4>{{ item.title }}</h4>
+                                    <p>Digital Download</p>
+                                </div>
+                                <div class="orders__item-product-price">${{ item.price }}</div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="orders__item-footer">
+                            <div class="orders__item-footer-total">
+                                Total: <span>${{ order.total }}</span>
+                            </div>
+                            <div class="orders__item-footer-actions">
+                                <button class="btn btn--outline btn--sm">View Details</button>
+                                {% if order.status == 'delivered' %}
+                                <button class="btn btn--primary btn--sm">Download</button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

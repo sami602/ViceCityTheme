@@ -1,0 +1,89 @@
+/*
+ * Theme Variables with CSS Custom Properties
+ * Supports both Light and Dark modes
+ */
+
+:root {
+  // Color Mode Transition
+  --transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  --color-white: #ffffff;
+
+  // Layout
+  --navbar-height: 70px;
+}
+
+// Dark Mode (Default)
+:root,
+[data-theme="dark"] {
+  // Primary Neon Colors
+  --color-neon-pink: #ff006e;
+  --color-neon-blue: #00d9ff;
+  --color-neon-purple: #b967ff;
+  --color-neon-orange: #ff8c00;
+  --color-neon-green: #00ff88;
+  --color-neon-yellow: #ffed4e;
+
+  // Background Colors
+  --color-bg-primary: #0a0a0f;
+  --color-bg-primary-rgb: 10, 10, 15;
+  --color-bg-secondary: #050508;
+  --color-bg-secondary-rgb: 5, 5, 8;
+  --color-bg-card: #1a1a2e;
+  --color-bg-card-rgb: 26, 26, 46;
+  --color-bg-card-hover: #252540;
+
+  // Text Colors
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b8b8d0;
+  --color-text-muted: #6b6b8a;
+
+  // Border Colors
+  --color-border: rgba(123, 74, 74, 0.1);
+  --color-border-hover: rgba(255, 0, 110, 0.5);
+
+  // Shadow intensities
+  --shadow-intensity: 1;
+  --overlay-opacity: 0.05;
+}
+
+// Light Mode
+[data-theme="light"] {
+  // Primary Neon Colors (slightly desaturated for light mode)
+  --color-neon-pink: #e6005f;
+  --color-neon-blue: #00b8d4;
+  --color-neon-purple: #9c4dff;
+  --color-neon-orange: #ff7700;
+  --color-neon-green: #00d170;
+  --color-neon-yellow: #ffc107;
+
+  // Background Colors
+  --color-bg-primary: #f5f7fa;
+  --color-bg-primary-rgb: 245, 247, 250;
+  --color-bg-secondary: #ffffff;
+  --color-bg-secondary-rgb: 255, 255, 255;
+  --color-bg-card: #ffffff;
+  --color-bg-card-rgb: 255, 255, 255;
+  --color-bg-card-hover: #f8f9fc;
+
+  // Text Colors
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #4a5568;
+  --color-text-muted: #718096;
+
+  // Border Colors
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-border-hover: rgba(230, 0, 95, 0.3);
+
+  // Shadow intensities
+  --shadow-intensity: 0.3;
+  --overlay-opacity: 0.03;
+}
+
+// Theme transition
+body.theme-transitioning,
+body.theme-transitioning * {
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease !important;
+}

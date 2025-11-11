@@ -1,0 +1,78 @@
+/**
+ * Notifications Component
+ * Toast notifications for user feedback
+ */
+
+.notification {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: $z-notification;
+  min-width: 250px;
+  max-width: 400px;
+  padding: $spacing-md $spacing-lg;
+  border-radius: $radius-lg;
+  background: rgba(var(--color-bg-card-rgb), 1);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  font-size: 0.875rem;
+  font-weight: 500;
+  animation: slideInRight 0.3s ease-out;
+  isolation: isolate;
+
+  @include respond-to('md') {
+    right: 40px;
+    top: 120px;
+  }
+
+  &--success {
+    border-left: 4px solid $color-success;
+    background: linear-gradient(135deg, rgba(var(--color-bg-card-rgb), 0.98), rgba($color-success, 0.15));
+    color: var(--color-text-primary);
+  }
+
+  &--error {
+    border-left: 4px solid $color-error;
+    background: linear-gradient(135deg, rgba(var(--color-bg-card-rgb), 0.98), rgba($color-error, 0.15));
+    color: var(--color-text-primary);
+  }
+
+  &--info {
+    border-left: 4px solid $color-info;
+    background: linear-gradient(135deg, rgba(var(--color-bg-card-rgb), 0.98), rgba($color-info, 0.15));
+    color: var(--color-text-primary);
+  }
+
+  &--warning {
+    border-left: 4px solid $color-warning;
+    background: linear-gradient(135deg, rgba(var(--color-bg-card-rgb), 0.98), rgba($color-warning, 0.15));
+    color: var(--color-text-primary);
+  }
+
+  &.slide-out {
+    animation: slideOutRight 0.3s ease-out;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+}
